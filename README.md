@@ -1,2 +1,2 @@
 # SaneWindowsAPI
-A modern C++ wrapper over the Win32 API to make it sane to use
+A modern C++ wrapper over the Win32 API to introduce some sanity in the Windows world.
