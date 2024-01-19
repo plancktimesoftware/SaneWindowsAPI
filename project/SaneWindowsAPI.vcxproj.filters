@@ -25,6 +25,9 @@
     <Filter Include="SystemServices">
       <UniqueIdentifier>{d74823d8-3114-4663-bdb3-4a3c04cead43}</UniqueIdentifier>
     </Filter>
+    <Filter Include="WindowsAndMessages">
+      <UniqueIdentifier>{b27ab897-aba2-454c-b33a-0c70b1756ae7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\pch\pch.h">
@@ -129,6 +132,12 @@
     <ClInclude Include="..\include\Module.h">
       <Filter>SystemServices</Filter>
     </ClInclude>
+    <ClInclude Include="..\include\Window.h">
+      <Filter>WindowsAndMessages</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\Geometry.h">
+      <Filter>WindowsAndMessages</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\pch\pch.cpp">
@@ -220,6 +229,12 @@
     </ClCompile>
     <ClCompile Include="..\source\Module.cpp">
       <Filter>SystemServices</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\Window.cpp">
+      <Filter>WindowsAndMessages</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\Geometry.cpp">
+      <Filter>WindowsAndMessages</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

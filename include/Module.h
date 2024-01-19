@@ -2,14 +2,15 @@
 
 #include <string>
 #include <memory>
+#include "WinResult.h"
 
 namespace SWApi
 {
 	class Module
 	{
 	public:
-		static Module Load(const std::wstring& path);
-		static Module LoadEx(const std::wstring& path, DWORD flags);
+		static auto Load(const std::wstring& path) -> WinResult<Module>;
+		static auto LoadEx(const std::wstring& path, DWORD flags) -> WinResult<Module>;
 
 		auto GetFilePath() -> std::wstring;
 

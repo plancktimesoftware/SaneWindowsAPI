@@ -7,6 +7,8 @@
 
 namespace SWApi
 {
+	class Window;
+
 namespace DXGI
 {
 	class Device;
@@ -25,7 +27,7 @@ namespace DComposition
 	public:
 		static auto Create(const DXGI::Device& dxgiDevice) -> WinResult<Device>;
 
-		auto CreateTargetForHwnd(HWND hwnd, bool topmost) -> WinResult<Target>;
+		auto CreateTargetForHwnd(const Window& window, bool topmost) -> WinResult<Target>;
 
 		auto CreateVisual() -> WinResult<Visual>;
 

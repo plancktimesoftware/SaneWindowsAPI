@@ -194,11 +194,13 @@
     <ClInclude Include="..\include\DXGIObject.h" />
     <ClInclude Include="..\include\DXGISurface.h" />
     <ClInclude Include="..\include\DXGISwapChain.h" />
+    <ClInclude Include="..\include\Geometry.h" />
     <ClInclude Include="..\include\InternalMacros.h" />
     <ClInclude Include="..\include\Module.h" />
     <ClInclude Include="..\include\Result.h" />
     <ClInclude Include="..\include\SequentialStream.h" />
     <ClInclude Include="..\include\Stream.h" />
+    <ClInclude Include="..\include\Window.h" />
     <ClInclude Include="..\include\WinResult.h" />
     <ClInclude Include="..\pch\pch.h" />
   </ItemGroup>
@@ -235,9 +237,11 @@
     <ClCompile Include="..\source\DXGIObject.cpp" />
     <ClCompile Include="..\source\DXGISurface.cpp" />
     <ClCompile Include="..\source\DXGISwapChain.cpp" />
+    <ClCompile Include="..\source\Geometry.cpp" />
     <ClCompile Include="..\source\Module.cpp" />
     <ClCompile Include="..\source\SequentialStream.cpp" />
     <ClCompile Include="..\source\Stream.cpp" />
+    <ClCompile Include="..\source\Window.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

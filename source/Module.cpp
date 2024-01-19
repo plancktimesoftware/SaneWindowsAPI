@@ -3,27 +3,23 @@
 
 namespace SWApi
 {
-	struct ModuleDeleterOwned
-	{
-		void operator() (HMODULE hModule) { FreeLibrary(hModule); }
-	};
-
-	struct ModuleDeleterNotOwned
-	{
-		void operator() (HMODULE) { }
-	};
-
-	Module Module::Load(const std::wstring& path)
+	auto Module::Load(const std::wstring& path) -> WinResult<Module>
 	{
 		auto hModule = LoadLibraryW(path.c_str());
+		if (hModule == nullptr)
+			return Err(HRESULT_FROM_WIN32(GetLastError()));
+
 		Module m;
 		m.SetNative(hModule, true);
 		return m;
 	}
 
-	Module Module::LoadEx(const std::wstring& path, DWORD flags)
+	auto Module::LoadEx(const std::wstring& path, DWORD flags) -> WinResult<Module>
 	{
 		auto hModule = LoadLibraryExW(path.c_str(), NULL, flags);
+		if (hModule == nullptr)
+			return Err(HRESULT_FROM_WIN32(GetLastError()));
+
 		Module m;
 		m.SetNative(hModule, true);
 		return m;
@@ -38,6 +34,16 @@ namespace SWApi
 
 	void Module::SetNative(HMODULE hModule, bool owned)
 	{
+		struct ModuleDeleterOwned
+		{
+			void operator() (HMODULE hModule) { FreeLibrary(hModule); }
+		};
+
+		struct ModuleDeleterNotOwned
+		{
+			void operator() (HMODULE) { }
+		};
+
 		if (owned)
 			mModuleSharedPtr = ModuleSharedPtr(hModule, ModuleDeleterOwned());
 		else

@@ -2,6 +2,7 @@
 #include "DXGIDevice.h"
 #include "DCompositionTarget.h"
 #include "DCompositionVisual.h"
+#include "Window.h"
 
 #pragma comment(lib, "dcomp")
 
@@ -25,14 +26,14 @@ namespace DComposition
 		return device;
 	}
 
-	auto Device::CreateTargetForHwnd(HWND hwnd, bool topmost) -> WinResult<Target>
+	auto Device::CreateTargetForHwnd(const Window& window, bool topmost) -> WinResult<Target>
 	{
-		if (mDeviceV0 == nullptr || hwnd == nullptr)
+		if (mDeviceV0 == nullptr || window.GetNative() == nullptr)
 			return Err(E_POINTER);
 
 		IDCompositionTarget* dCompTargetPtr = nullptr;
 		auto hres = mDeviceV0->CreateTargetForHwnd(
-			hwnd, topmost ? TRUE : FALSE, &dCompTargetPtr);
+			window.GetNative(), topmost ? TRUE : FALSE, &dCompTargetPtr);
 		if (hres != S_OK)
 			return Err(hres);
 
