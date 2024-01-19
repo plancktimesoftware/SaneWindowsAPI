@@ -38,6 +38,16 @@ namespace SWApi
 		return Rect(rect);
 	}
 
+	auto Window::Show(int nCmdShow) -> bool
+	{
+		return ShowWindow(GetNative(), nCmdShow);
+	}
+
+	void Window::Update()
+	{
+		UpdateWindow(GetNative());
+	}
+
 	void Window::SetNative(HWND hwnd)
 	{
 		struct HWNDDeleter

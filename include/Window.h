@@ -22,8 +22,10 @@ namespace SWApi
 			std::optional<LPVOID> lpParam) -> WinResult<Window>;
 
 		auto GetRect() const -> WinResult<Rect>;
+		auto Show(int nCmdShow) -> bool;
+		void Update();
 
-		Window() {}
+		Window() = default;
 		Window(const Window& other) = default;
 		Window(Window&& other) = default;
 		~Window() {}
