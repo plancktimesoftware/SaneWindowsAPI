@@ -1,0 +1,225 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="PreCompiledHeader">
+      <UniqueIdentifier>{f2feab06-8986-4ed2-b89b-4a1d78af28d1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Common">
+      <UniqueIdentifier>{55561f4a-1398-4c40-8e08-7a72677e7df8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="D2D1">
+      <UniqueIdentifier>{c26b9ebb-c6ee-4a2a-b3d0-e7fd1bbe283a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="D3D11">
+      <UniqueIdentifier>{7682e995-f1b1-4b76-9657-b590c0fceb90}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="DComposition">
+      <UniqueIdentifier>{6ff2dde1-51e5-46d8-9f6d-a1018d5b2214}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="DXGI">
+      <UniqueIdentifier>{7389b54d-1cc2-41d9-8148-c4b1021db829}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="StructuredStorage">
+      <UniqueIdentifier>{9bc4f946-b577-4795-bc38-c3877782d619}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SystemServices">
+      <UniqueIdentifier>{d74823d8-3114-4663-bdb3-4a3c04cead43}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\pch\pch.h">
+      <Filter>PreCompiledHeader</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\CommonMacros.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\InternalMacros.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\Result.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\WinResult.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\D2D1Bitmap.h">
+      <Filter>D2D1</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\D2D1Brush.h">
+      <Filter>D2D1</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\D2D1Device.h">
+      <Filter>D2D1</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\D2D1DeviceContext.h">
+      <Filter>D2D1</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\D2D1Effect.h">
+      <Filter>D2D1</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\D2D1Factory.h">
+      <Filter>D2D1</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\D2D1Geometry.h">
+      <Filter>D2D1</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\D2D1GeometrySink.h">
+      <Filter>D2D1</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\D2D1Image.h">
+      <Filter>D2D1</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\D2D1PathGeometry.h">
+      <Filter>D2D1</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\D2D1Properties.h">
+      <Filter>D2D1</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\D2D1RenderTarget.h">
+      <Filter>D2D1</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\D2D1Resource.h">
+      <Filter>D2D1</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\D2D1SimplifiedGeometrySink.h">
+      <Filter>D2D1</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\D2D1SolidColorBrush.h">
+      <Filter>D2D1</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\D2D1SvgDocument.h">
+      <Filter>D2D1</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\D3D11Device.h">
+      <Filter>D3D11</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\DCompositionDevice.h">
+      <Filter>DComposition</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\DCompositionTarget.h">
+      <Filter>DComposition</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\DCompositionVisual.h">
+      <Filter>DComposition</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\DXGIDevice.h">
+      <Filter>DXGI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\DXGIDeviceSubObject.h">
+      <Filter>DXGI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\DXGIFactory.h">
+      <Filter>DXGI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\DXGIObject.h">
+      <Filter>DXGI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\DXGISurface.h">
+      <Filter>DXGI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\DXGISwapChain.h">
+      <Filter>DXGI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\SequentialStream.h">
+      <Filter>StructuredStorage</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\Stream.h">
+      <Filter>StructuredStorage</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\Module.h">
+      <Filter>SystemServices</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\pch\pch.cpp">
+      <Filter>PreCompiledHeader</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\D2D1Bitmap.cpp">
+      <Filter>D2D1</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\D2D1Brush.cpp">
+      <Filter>D2D1</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\D2D1Device.cpp">
+      <Filter>D2D1</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\D2D1DeviceContext.cpp">
+      <Filter>D2D1</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\D2D1Effect.cpp">
+      <Filter>D2D1</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\D2D1Factory.cpp">
+      <Filter>D2D1</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\D2D1Geometry.cpp">
+      <Filter>D2D1</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\D2D1GeometrySink.cpp">
+      <Filter>D2D1</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\D2D1Image.cpp">
+      <Filter>D2D1</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\D2D1PathGeometry.cpp">
+      <Filter>D2D1</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\D2D1Properties.cpp">
+      <Filter>D2D1</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\D2D1RenderTarget.cpp">
+      <Filter>D2D1</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\D2D1Resource.cpp">
+      <Filter>D2D1</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\D2D1SimplifiedGeometrySink.cpp">
+      <Filter>D2D1</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\D2D1SolidColorBrush.cpp">
+      <Filter>D2D1</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\D2D1SvgDocument.cpp">
+      <Filter>D2D1</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\D3D11Device.cpp">
+      <Filter>D3D11</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\DCompositionDevice.cpp">
+      <Filter>DComposition</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\DCompositionTarget.cpp">
+      <Filter>DComposition</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\DCompositionVisual.cpp">
+      <Filter>DComposition</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\DXGIDevice.cpp">
+      <Filter>DXGI</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\DXGIDeviceSubObject.cpp">
+      <Filter>DXGI</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\DXGIFactory.cpp">
+      <Filter>DXGI</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\DXGIObject.cpp">
+      <Filter>DXGI</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\DXGISurface.cpp">
+      <Filter>DXGI</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\DXGISwapChain.cpp">
+      <Filter>DXGI</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\SequentialStream.cpp">
+      <Filter>StructuredStorage</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\Stream.cpp">
+      <Filter>StructuredStorage</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\Module.cpp">
+      <Filter>SystemServices</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>
