@@ -24,7 +24,7 @@ namespace D2D1
 
 		Device() = default;
 		Device(const Device& other);
-		Device(Device&& other) noexcept;
+		Device(Device&& other) noexcept(true);
 
 		~Device();
 

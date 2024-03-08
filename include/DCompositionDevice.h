@@ -35,7 +35,7 @@ namespace DComposition
 
 		Device() = default;
 		Device(const Device& other);
-		Device(Device&& other);
+		Device(Device&& other) noexcept(true);
 
 		~Device();
 

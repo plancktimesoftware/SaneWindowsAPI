@@ -12,7 +12,7 @@ namespace D2D1
 		if (mID2D1Geometry) mID2D1Geometry->AddRef();
 	}
 
-	Geometry::Geometry(Geometry&& other)
+	Geometry::Geometry(Geometry&& other) noexcept(true)
 		: Resource(std::forward<Resource>(other))
 		, mID2D1Geometry{ other.mID2D1Geometry }
 	{

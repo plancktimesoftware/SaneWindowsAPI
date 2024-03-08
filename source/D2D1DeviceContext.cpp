@@ -218,7 +218,7 @@ namespace D2D1
 		ADDREF_TO_VERSIONED_VARIABLES(D2D1DEVICECONTEXT_VERSIONS, NUM_D2D1DEVICECONTEXT_VERSIONS, mDeviceContext)
 	}
 
-	DeviceContext::DeviceContext(DeviceContext&& other)
+	DeviceContext::DeviceContext(DeviceContext&& other) noexcept(true)
 		: RenderTarget(std::forward<RenderTarget>(other))
 		INITIALIZE_VERSIONED_VARIABLES(D2D1DEVICECONTEXT_VERSIONS, NUM_D2D1DEVICECONTEXT_VERSIONS, mDeviceContext, other.mDeviceContext)
 	{

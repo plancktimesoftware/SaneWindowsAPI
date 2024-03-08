@@ -10,7 +10,7 @@ namespace D2D1
 	{
 		if (mID2D1Brush) mID2D1Brush->AddRef();
 	}
-	Brush::Brush(Brush&& other)
+	Brush::Brush(Brush&& other) noexcept(true)
 		: Resource(std::forward<Resource>(other))
 		, mID2D1Brush{ other.mID2D1Brush }
 	{

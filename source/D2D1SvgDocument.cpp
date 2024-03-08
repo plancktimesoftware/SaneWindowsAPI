@@ -13,7 +13,7 @@ namespace D2D1
 			mID2D1SvgDocument->AddRef();
 	}
 
-	SvgDocument::SvgDocument(SvgDocument&& other)
+	SvgDocument::SvgDocument(SvgDocument&& other) noexcept(true)
 		: Resource(std::forward<Resource>(other))
 		, mID2D1SvgDocument(other.mID2D1SvgDocument)
 	{

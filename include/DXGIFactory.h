@@ -1,5 +1,6 @@
 #pragma once
 
+#include <optional>
 #include <dxgi1_6.h>
 #include "WinResult.h"
 #include "DXGIObject.h"
@@ -11,6 +12,7 @@ namespace DXGI
 {
 	class Device;
 	class SwapChain;
+	class Output;
 
 #define DXGIFACTORY_VERSIONS (0, 1, 2, 3, 4, 5, 6)
 #define NUM_DXGIFACTORY_VERSIONS 7
@@ -22,15 +24,19 @@ namespace DXGI
 
 		Factory() = default;
 		Factory(const Factory& other);
-		Factory(Factory&& other);
+		Factory(Factory&& other) noexcept(true);
 
 		~Factory();
 
 		template<typename DXGIFactoryT>
 		void SetNative(DXGIFactoryT* factoryPtr);
 
+		auto CreateSwapChain(const Device& device, const DXGI_SWAP_CHAIN_DESC& desc)
+			-> WinResult<SwapChain>;
+
 		auto CreateSwapChainForComposition(
-			const Device& device, const DXGI_SWAP_CHAIN_DESC1& desc, IDXGIOutput* pRestrictToOutput)
+			const Device& device, const DXGI_SWAP_CHAIN_DESC1& desc,
+			std::optional<Output> restrictToOutput)
 			-> WinResult<SwapChain>;
 
 	private:

@@ -13,7 +13,7 @@ namespace SWApi
 
 		Stream() = default;
 		Stream(const Stream& other);
-		Stream(Stream&& other);
+		Stream(Stream&& other) noexcept(true);
 
 		~Stream();
 

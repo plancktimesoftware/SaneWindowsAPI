@@ -24,7 +24,7 @@ namespace DComposition
 	{
 		ADDREF_TO_VERSIONED_VARIABLES(DCOMPVISUAL_VERSIONS, NUM_DCOMPVISUAL_VERSIONS, mVisual);
 	}
-	Visual::Visual(Visual&& other)
+	Visual::Visual(Visual&& other) noexcept(true)
 		: Unknown(std::forward<Unknown>(other))
 		INITIALIZE_VERSIONED_VARIABLES(DCOMPVISUAL_VERSIONS, NUM_DCOMPVISUAL_VERSIONS, mVisual, other.mVisual)
 	{

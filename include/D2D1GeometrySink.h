@@ -15,7 +15,7 @@ namespace D2D1
 
 		GeometrySink() = default;
 		GeometrySink(const GeometrySink& other);
-		GeometrySink(GeometrySink&& other);
+		GeometrySink(GeometrySink&& other) noexcept(true);
 
 		~GeometrySink();
 

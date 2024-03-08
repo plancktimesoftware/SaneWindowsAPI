@@ -22,7 +22,7 @@ namespace SWApi
 			mIStream->AddRef();
 	}
 
-	Stream::Stream(Stream&& other)
+	Stream::Stream(Stream&& other) noexcept(true)
 		: SequentialStream(std::forward<SequentialStream>(other))
 		, mIStream(other.mIStream)
 	{

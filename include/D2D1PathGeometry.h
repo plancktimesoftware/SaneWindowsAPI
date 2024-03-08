@@ -21,7 +21,7 @@ namespace D2D1
 
 		PathGeometry() = default;
 		PathGeometry(const PathGeometry& other);
-		PathGeometry(PathGeometry&& other);
+		PathGeometry(PathGeometry&& other) noexcept(true);
 
 		~PathGeometry();
 

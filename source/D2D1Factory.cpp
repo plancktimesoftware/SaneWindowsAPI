@@ -213,7 +213,7 @@ namespace D2D1
 	{
 		ADDREF_TO_VERSIONED_VARIABLES(D2D1FACTORY_VERSIONS, NUM_D2D1FACTORY_VERSIONS, mFactory);
 	}
-	Factory::Factory(Factory&& other)
+	Factory::Factory(Factory&& other) noexcept(true)
 		: Unknown(std::forward<Unknown>(other))
 		INITIALIZE_VERSIONED_VARIABLES(D2D1FACTORY_VERSIONS, NUM_D2D1FACTORY_VERSIONS, mFactory, other.mFactory)
 	{

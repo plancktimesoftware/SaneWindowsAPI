@@ -12,7 +12,7 @@ namespace D2D1
 	public:
 		SvgDocument() = default;
 		SvgDocument(const SvgDocument& other);
-		SvgDocument(SvgDocument&& other);
+		SvgDocument(SvgDocument&& other) noexcept(true);
 
 		~SvgDocument();
 

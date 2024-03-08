@@ -18,7 +18,7 @@ namespace D2D1
 	{
 		if (mID2D1RenderTarget) mID2D1RenderTarget->AddRef();
 	}
-	RenderTarget::RenderTarget(RenderTarget&& other)
+	RenderTarget::RenderTarget(RenderTarget&& other) noexcept(true)
 		: Resource(std::forward<Resource>(other))
 		, mID2D1RenderTarget{ other.mID2D1RenderTarget }
 	{

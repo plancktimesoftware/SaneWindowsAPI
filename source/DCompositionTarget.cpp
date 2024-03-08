@@ -22,7 +22,8 @@ namespace DComposition
 	{
 		if (mIDCompositionTarget) mIDCompositionTarget->AddRef();
 	}
-	Target::Target(Target&& other)
+
+	Target::Target(Target&& other) noexcept(true)
 		: Unknown(std::forward<Unknown>(other))
 		, mIDCompositionTarget{ other.mIDCompositionTarget }
 	{

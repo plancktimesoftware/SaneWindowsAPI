@@ -11,7 +11,7 @@ namespace D2D1
 		ADDREF_TO_VERSIONED_VARIABLES(D2D1BITMAP_VERSIONS, NUM_D2D1BITMAP_VERSIONS, mBitmap)
 	}
 
-	Bitmap::Bitmap(Bitmap&& other) noexcept
+	Bitmap::Bitmap(Bitmap&& other) noexcept(true)
 		: Image(std::forward<Image>(other))
 		INITIALIZE_VERSIONED_VARIABLES(D2D1BITMAP_VERSIONS, NUM_D2D1BITMAP_VERSIONS, mBitmap, other.mBitmap)
 	{

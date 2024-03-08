@@ -1,6 +1,7 @@
 #include "DXGIFactory.h"
 #include "DXGIDevice.h"
 #include "DXGISwapChain.h"
+#include "DXGIOutput.h"
 
 #pragma comment(lib, "dxgi")
 
@@ -13,27 +14,24 @@ namespace DXGI
 	{
 		DECLARE_VERSIONED_POINTER_VARIABLES(DXGIFACTORY_VERSIONS, NUM_DXGIFACTORY_VERSIONS, IDXGIFactory, factory, nullptr)
 
-		IDXGIFactory2* tempfactoryV2 = nullptr;
-		auto hres = CreateDXGIFactory2(flags, __uuidof(IDXGIFactory2), reinterpret_cast<void**>(&tempfactoryV2));
+		auto hres = CreateDXGIFactory2(flags, __uuidof(IDXGIFactory2), reinterpret_cast<void**>(&factoryV2));
 
-		IDXGIFactory1* tempfactoryV1 = nullptr;
 		if (hres != S_OK)
-			hres = CreateDXGIFactory1(__uuidof(IDXGIFactory1), reinterpret_cast<void**>(&tempfactoryV1));
+			hres = CreateDXGIFactory1(__uuidof(IDXGIFactory1), reinterpret_cast<void**>(&factoryV1));
 
-		IDXGIFactory* tempfactoryV0 = nullptr;
 		if (hres != S_OK)
-			hres = CreateDXGIFactory(__uuidof(IDXGIFactory), reinterpret_cast<void**>(&tempfactoryV0));
+			hres = CreateDXGIFactory(__uuidof(IDXGIFactory), reinterpret_cast<void**>(&factoryV0));
 
 		if (hres != S_OK)
 			return Err(hres);
 
 		Factory factory;
-		if (tempfactoryV2)
-			factory.SetNative(tempfactoryV2);
-		else if (tempfactoryV1)
-			factory.SetNative(tempfactoryV1);
+		if (factoryV2)
+			factory.SetNative(factoryV2);
+		else if (factoryV1)
+			factory.SetNative(factoryV1);
 		else
-			factory.SetNative(tempfactoryV0);
+			factory.SetNative(factoryV0);
 		return factory;
 	}
 
@@ -43,7 +41,7 @@ namespace DXGI
 	{
 		ADDREF_TO_VERSIONED_VARIABLES(DXGIFACTORY_VERSIONS, NUM_DXGIFACTORY_VERSIONS, mFactory);
 	}
-	Factory::Factory(Factory&& other)
+	Factory::Factory(Factory&& other) noexcept(true)
 		: Object(std::forward<Object>(other))
 		INITIALIZE_VERSIONED_VARIABLES(DXGIFACTORY_VERSIONS, NUM_DXGIFACTORY_VERSIONS, mFactory, other.mFactory)
 	{
@@ -55,14 +53,38 @@ namespace DXGI
 		RELEASE_VERSIONED_VARIABLES(DXGIFACTORY_VERSIONS, NUM_DXGIFACTORY_VERSIONS, mFactory)
 	}
 
+	auto Factory::CreateSwapChain(const Device& device, const DXGI_SWAP_CHAIN_DESC& desc)
+		-> WinResult<SwapChain>
+	{
+		if (mFactoryV0 == nullptr) return Err(E_POINTER);
+
+		auto devicePtr = device.GetNative<IDXGIDevice>();
+		if (devicePtr == nullptr) return Err(E_POINTER);
+
+		IDXGISwapChain* swapChainV0 = nullptr;
+		DXGI_SWAP_CHAIN_DESC tempDesc = desc;
+		auto hres = mFactoryV2->CreateSwapChain(
+			devicePtr, &tempDesc, &swapChainV0);
+		if (hres != S_OK)
+			return Err(hres);
+
+		SwapChain swapChain;
+		swapChain.SetNative(swapChainV0);
+		return swapChain;
+	}
+
 	auto Factory::CreateSwapChainForComposition(
-		const Device& device, const DXGI_SWAP_CHAIN_DESC1& desc, IDXGIOutput* pRestrictToOutput)
+		const Device& device, const DXGI_SWAP_CHAIN_DESC1& desc,
+		std::optional<Output> restrictToOutput)
 		-> WinResult<SwapChain>
 	{
 		if (mFactoryV2 == nullptr) return Err(E_POINTER);
 
 		auto devicePtr = device.GetNative<IDXGIDevice>();
 		if (devicePtr == nullptr) return Err(E_POINTER);
+
+		IDXGIOutput* pRestrictToOutput =
+			restrictToOutput ? restrictToOutput->GetNative<IDXGIOutput>() : nullptr;
 
 		IDXGISwapChain1* swapChainV1 = nullptr;
 		auto hres = mFactoryV2->CreateSwapChainForComposition(

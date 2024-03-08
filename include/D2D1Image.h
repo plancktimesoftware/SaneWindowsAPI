@@ -12,7 +12,7 @@ namespace D2D1
 	public:
 		Image() = default;
 		Image(const Image& other);
-		Image(Image&& other);
+		Image(Image&& other) noexcept(true);
 
 		~Image();
 

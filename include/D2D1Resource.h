@@ -11,7 +11,7 @@ namespace D2D1
 	public:
 		Resource() = default;
 		Resource(const Resource& other);
-		Resource(Resource&& other);
+		Resource(Resource&& other) noexcept(true);
 
 		~Resource();
 

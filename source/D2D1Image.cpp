@@ -10,7 +10,7 @@ namespace D2D1
 	{
 		if (mID2D1Image) mID2D1Image->AddRef();
 	}
-	Image::Image(Image&& other)
+	Image::Image(Image&& other) noexcept(true)
 		: Resource(std::forward<Resource>(other))
 		, mID2D1Image{ other.mID2D1Image }
 	{

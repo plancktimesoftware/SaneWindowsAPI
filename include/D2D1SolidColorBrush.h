@@ -14,7 +14,7 @@ namespace D2D1
 	public:
 		SolidColorBrush() = default;
 		SolidColorBrush(const SolidColorBrush& other);
-		SolidColorBrush(SolidColorBrush&& other);
+		SolidColorBrush(SolidColorBrush&& other) noexcept(true);
 
 		~SolidColorBrush();
 

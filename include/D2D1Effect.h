@@ -16,7 +16,7 @@ namespace D2D1
 
 		Effect() = default;
 		Effect(const Effect& other);
-		Effect(Effect&& other);
+		Effect(Effect&& other) noexcept(true);
 
 		~Effect();
 

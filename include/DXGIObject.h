@@ -13,7 +13,7 @@ namespace DXGI
 	public:
 		Object() = default;
 		Object(const Object& other);
-		Object(Object&& other);
+		Object(Object&& other) noexcept(true);
 
 		~Object();
 

@@ -72,7 +72,7 @@ namespace D3D11
 		ADDREF_TO_VERSIONED_VARIABLES(D3D11DEVICE_VERSIONS, NUM_D3D11DEVICE_VERSIONS, mDevice)
 	}
 
-	Device::Device(Device&& other) noexcept
+	Device::Device(Device&& other) noexcept(true)
 		: Unknown(std::forward<Unknown>(other))
 		, mFeatureLevel(other.mFeatureLevel)
 		, mDeviceContext(other.mDeviceContext)

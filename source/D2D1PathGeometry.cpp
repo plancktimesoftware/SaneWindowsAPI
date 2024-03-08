@@ -28,7 +28,7 @@ namespace D2D1
 			D2D1PATHGEOMETRY_VERSIONS, NUM_D2D1PATHGEOMETRY_VERSIONS, mPathGeometry)
 	}
 
-	PathGeometry::PathGeometry(PathGeometry&& other)
+	PathGeometry::PathGeometry(PathGeometry&& other) noexcept(true)
 		: Geometry(std::forward<Geometry>(other))
 		INITIALIZE_VERSIONED_VARIABLES(
 			D2D1PATHGEOMETRY_VERSIONS, NUM_D2D1PATHGEOMETRY_VERSIONS, mPathGeometry, other.mPathGeometry)

@@ -17,7 +17,7 @@ namespace DComposition
 
 		Target() = default;
 		Target(const Target& other);
-		Target(Target&& other);
+		Target(Target&& other) noexcept(true);
 
 		~Target();
 

@@ -80,7 +80,7 @@ namespace D2D1
 
 		DeviceContext() = default;
 		DeviceContext(const DeviceContext& other);
-		DeviceContext(DeviceContext&& other);
+		DeviceContext(DeviceContext&& other) noexcept(true);
 
 		~DeviceContext();
 

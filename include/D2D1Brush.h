@@ -12,7 +12,7 @@ namespace D2D1
 	public:
 		Brush() = default;
 		Brush(const Brush& other);
-		Brush(Brush&& other);
+		Brush(Brush&& other) noexcept(true);
 
 		~Brush();
 

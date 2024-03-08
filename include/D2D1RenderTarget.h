@@ -12,7 +12,7 @@ namespace D2D1
 
 		RenderTarget() = default;
 		RenderTarget(const RenderTarget& other);
-		RenderTarget(RenderTarget&& other);
+		RenderTarget(RenderTarget&& other) noexcept(true);
 
 		~RenderTarget();
 

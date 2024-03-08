@@ -192,6 +192,7 @@
     <ClInclude Include="..\include\DXGIDeviceSubObject.h" />
     <ClInclude Include="..\include\DXGIFactory.h" />
     <ClInclude Include="..\include\DXGIObject.h" />
+    <ClInclude Include="..\include\DXGIOutput.h" />
     <ClInclude Include="..\include\DXGISurface.h" />
     <ClInclude Include="..\include\DXGISwapChain.h" />
     <ClInclude Include="..\include\Geometry.h" />
@@ -235,6 +236,7 @@
     <ClCompile Include="..\source\DXGIDeviceSubObject.cpp" />
     <ClCompile Include="..\source\DXGIFactory.cpp" />
     <ClCompile Include="..\source\DXGIObject.cpp" />
+    <ClCompile Include="..\source\DXGIOutput.cpp" />
     <ClCompile Include="..\source\DXGISurface.cpp" />
     <ClCompile Include="..\source\DXGISwapChain.cpp" />
     <ClCompile Include="..\source\Geometry.cpp" />

@@ -10,7 +10,7 @@ namespace D2D1
 	{
 		if (mID2D1Properties) mID2D1Properties->AddRef();
 	}
-	Properties::Properties(Properties&& other)
+	Properties::Properties(Properties&& other) noexcept(true)
 		: Unknown(std::forward<Unknown>(other))
 		, mID2D1Properties{ other.mID2D1Properties }
 	{

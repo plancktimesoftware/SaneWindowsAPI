@@ -260,12 +260,14 @@ namespace SWApi
 		constexpr Result(Err<ErrT>&& error) : mError{ std::move(error.error()) }, mHasValue{ false } {}
 
 		constexpr Result(const Result<void, ErrT>& other)
-			: mHasValue(other.mHasValue) {
+			: mHasValue(other.mHasValue)
+		{
 			CopyConstruct(other);
 		}
 
-		constexpr Result(Result<void, ErrT>&& other)
-			: mHasValue(other.mHasValue) {
+		constexpr Result(Result<void, ErrT>&& other) noexcept(true)
+			: mHasValue(other.mHasValue)
+		{
 			MoveConstruct(std::forward<Result<void, ErrT>>(other));
 		}
 

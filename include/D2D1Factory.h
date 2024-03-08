@@ -36,7 +36,7 @@ namespace D2D1
 	
 		Factory() = default;
 		Factory(const Factory& other);
-		Factory(Factory&& other);
+		Factory(Factory&& other) noexcept(true);
 
 		~Factory();
 

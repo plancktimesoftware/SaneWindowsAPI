@@ -94,7 +94,7 @@ namespace D2D1
 		ADDREF_TO_VERSIONED_VARIABLES(D2D1DEVICE_VERSIONS, NUM_D2D1DEVICE_VERSIONS, mDevice)
 	}
 
-	Device::Device(Device&& other) noexcept
+	Device::Device(Device&& other) noexcept(true)
 		: Resource(std::forward<Resource>(other))
 		INITIALIZE_VERSIONED_VARIABLES(D2D1DEVICE_VERSIONS, NUM_D2D1DEVICE_VERSIONS, mDevice, other.mDevice)
 	{

@@ -18,7 +18,7 @@ namespace D2D1
 	public:
 		Bitmap() = default;
 		Bitmap(const Bitmap& other);
-		Bitmap(Bitmap&& other) noexcept;
+		Bitmap(Bitmap&& other) noexcept(true);
 
 		~Bitmap();
 

@@ -16,7 +16,7 @@ namespace DXGI
 	public:
 		Surface() = default;
 		Surface(const Surface& other);
-		Surface(Surface&& other);
+		Surface(Surface&& other) noexcept(true);
 
 		~Surface();
 

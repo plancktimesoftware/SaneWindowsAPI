@@ -20,7 +20,7 @@ namespace D2D1
 
 		SimplifiedGeometrySink() = default;
 		SimplifiedGeometrySink(const SimplifiedGeometrySink& other);
-		SimplifiedGeometrySink(SimplifiedGeometrySink&& other);
+		SimplifiedGeometrySink(SimplifiedGeometrySink&& other) noexcept(true);
 
 		~SimplifiedGeometrySink();
 

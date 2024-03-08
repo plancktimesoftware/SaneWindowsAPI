@@ -138,6 +138,9 @@
     <ClInclude Include="..\include\Geometry.h">
       <Filter>WindowsAndMessages</Filter>
     </ClInclude>
+    <ClInclude Include="..\include\DXGIOutput.h">
+      <Filter>DXGI</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\pch\pch.cpp">
@@ -235,6 +238,9 @@
     </ClCompile>
     <ClCompile Include="..\source\Geometry.cpp">
       <Filter>WindowsAndMessages</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\DXGIOutput.cpp">
+      <Filter>DXGI</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

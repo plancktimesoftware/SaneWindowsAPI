@@ -6,12 +6,12 @@ namespace SWApi
 {
 namespace DXGI
 {
-    class DeviceSubObject : public Object
-    {
+	class DeviceSubObject : public Object
+	{
 	public:
 		DeviceSubObject() = default;
 		DeviceSubObject(const DeviceSubObject& other);
-		DeviceSubObject(DeviceSubObject&& other);
+		DeviceSubObject(DeviceSubObject&& other) noexcept(true);
 
 		~DeviceSubObject();
 

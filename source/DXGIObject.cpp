@@ -10,7 +10,7 @@ namespace DXGI
 	{
 		if (mIDXGIObject) mIDXGIObject->AddRef();
 	}
-	Object::Object(Object&& other)
+	Object::Object(Object&& other) noexcept(true)
 		: Unknown(std::forward<Unknown>(other))
 		, mIDXGIObject{ other.mIDXGIObject }
 	{

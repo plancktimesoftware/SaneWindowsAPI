@@ -24,7 +24,7 @@ namespace DComposition
 
 		Visual() = default;
 		Visual(const Visual& other);
-		Visual(Visual&& other);
+		Visual(Visual&& other) noexcept(true);
 
 		~Visual();
 

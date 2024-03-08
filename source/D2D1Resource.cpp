@@ -10,7 +10,7 @@ namespace D2D1
 	{
 		if (mID2D1Resource) mID2D1Resource->AddRef();
 	}
-	Resource::Resource(Resource&& other)
+	Resource::Resource(Resource&& other) noexcept(true)
 		: Unknown(std::forward<Unknown>(other))
 		, mID2D1Resource{ other.mID2D1Resource }
 	{

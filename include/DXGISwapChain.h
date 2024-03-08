@@ -19,7 +19,7 @@ namespace DXGI
 	public:
 		SwapChain() = default;
 		SwapChain(const SwapChain& other);
-		SwapChain(SwapChain&& other);
+		SwapChain(SwapChain&& other) noexcept(true);
 
 		~SwapChain();
 

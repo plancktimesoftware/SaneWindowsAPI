@@ -10,7 +10,7 @@ namespace SWApi
 	public:
 		SequentialStream() = default;
 		SequentialStream(const SequentialStream& other);
-		SequentialStream(SequentialStream&& other);
+		SequentialStream(SequentialStream&& other) noexcept(true);
 
 		~SequentialStream();
 

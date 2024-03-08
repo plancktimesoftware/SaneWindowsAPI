@@ -11,7 +11,7 @@ namespace D2D1
 	public:
 		Geometry() = default;
 		Geometry(const Geometry& other);
-		Geometry(Geometry&& other);
+		Geometry(Geometry&& other) noexcept(true);
 
 		~Geometry();
 

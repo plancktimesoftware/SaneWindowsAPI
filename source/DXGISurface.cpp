@@ -11,7 +11,7 @@ namespace DXGI
 		ADDREF_TO_VERSIONED_VARIABLES(DXGISURFACE_VERSIONS, NUM_DXGISURFACE_VERSIONS, mSurface)
 	}
 
-	Surface::Surface(Surface&& other)
+	Surface::Surface(Surface&& other) noexcept(true)
 		: DeviceSubObject(std::forward<DeviceSubObject>(other))
 		INITIALIZE_VERSIONED_VARIABLES(DXGISURFACE_VERSIONS, NUM_DXGISURFACE_VERSIONS, mSurface, other.mSurface)
 	{

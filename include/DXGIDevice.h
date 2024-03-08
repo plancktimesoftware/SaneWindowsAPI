@@ -16,7 +16,7 @@ namespace DXGI
 	public:
 		Device() = default;
 		Device(const Device& other);
-		Device(Device&& other) noexcept;
+		Device(Device&& other) noexcept(true);
 
 		~Device();
 

@@ -18,7 +18,7 @@ namespace D2D1
 	{
 		if (mID2D1Effect) mID2D1Effect->AddRef();
 	}
-	Effect::Effect(Effect&& other)
+	Effect::Effect(Effect&& other) noexcept(true)
 		: Properties(std::forward<Properties>(other))
 		, mID2D1Effect{ other.mID2D1Effect }
 	{

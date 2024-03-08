@@ -9,7 +9,7 @@ namespace SWApi
 		if (mISequentialStream) mISequentialStream->AddRef();
 	}
 
-	SequentialStream::SequentialStream(SequentialStream&& other)
+	SequentialStream::SequentialStream(SequentialStream&& other) noexcept(true)
 		: Unknown(std::forward<Unknown>(other))
 		, mISequentialStream{ other.mISequentialStream }
 	{

@@ -15,7 +15,7 @@ namespace D2D1
 
 		Properties() = default;
 		Properties(const Properties& other);
-		Properties(Properties&& other);
+		Properties(Properties&& other) noexcept(true);
 
 		~Properties();
 

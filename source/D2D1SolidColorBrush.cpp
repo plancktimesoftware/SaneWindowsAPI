@@ -10,7 +10,7 @@ namespace D2D1
 	{
 		if (mID2D1SolidColorBrush) mID2D1SolidColorBrush->AddRef();
 	}
-	SolidColorBrush::SolidColorBrush(SolidColorBrush&& other)
+	SolidColorBrush::SolidColorBrush(SolidColorBrush&& other) noexcept(true)
 		: Brush(std::forward<Brush>(other))
 		, mID2D1SolidColorBrush{ other.mID2D1SolidColorBrush }
 	{

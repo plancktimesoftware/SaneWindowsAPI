@@ -32,7 +32,7 @@ namespace D2D1
 		if (mID2D1SimplifiedGeometrySink) mID2D1SimplifiedGeometrySink->AddRef();
 	}
 
-	SimplifiedGeometrySink::SimplifiedGeometrySink(SimplifiedGeometrySink&& other)
+	SimplifiedGeometrySink::SimplifiedGeometrySink(SimplifiedGeometrySink&& other) noexcept(true)
 		: Unknown(std::forward<Unknown>(other))
 		, mID2D1SimplifiedGeometrySink{ other.mID2D1SimplifiedGeometrySink }
 	{

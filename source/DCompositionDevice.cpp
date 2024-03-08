@@ -72,7 +72,8 @@ namespace DComposition
 	{
 		ADDREF_TO_VERSIONED_VARIABLES(DCOMPDEVICE_VERSIONS, NUM_DCOMPDEVICE_VERSIONS, mDevice);
 	}
-	Device::Device(Device&& other)
+
+	Device::Device(Device&& other) noexcept(true)
 		: Unknown(std::forward<Unknown>(other))
 		INITIALIZE_VERSIONED_VARIABLES(DCOMPDEVICE_VERSIONS, NUM_DCOMPDEVICE_VERSIONS, mDevice, other.mDevice)
 	{

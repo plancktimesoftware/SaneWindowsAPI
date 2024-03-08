@@ -11,7 +11,7 @@ namespace DXGI
 		if (mIDXGIDeviceSubObject) mIDXGIDeviceSubObject->AddRef();
 	}
 
-	DeviceSubObject::DeviceSubObject(DeviceSubObject&& other)
+	DeviceSubObject::DeviceSubObject(DeviceSubObject&& other) noexcept(true)
 		: Object(std::forward<Object>(other))
 		, mIDXGIDeviceSubObject(other.mIDXGIDeviceSubObject)
 	{

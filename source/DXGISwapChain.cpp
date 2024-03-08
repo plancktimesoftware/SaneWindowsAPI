@@ -12,7 +12,7 @@ namespace DXGI
 		ADDREF_TO_VERSIONED_VARIABLES(DXGISWAPCHAIN_VERSIONS, NUM_DXGISWAPCHAIN_VERSIONS, mSwapChain)
 	}
 
-	SwapChain::SwapChain(SwapChain&& other)
+	SwapChain::SwapChain(SwapChain&& other) noexcept(true)
 		: DeviceSubObject(std::forward<DeviceSubObject>(other))
 		INITIALIZE_VERSIONED_VARIABLES(DXGISWAPCHAIN_VERSIONS, NUM_DXGISWAPCHAIN_VERSIONS, mSwapChain, other.mSwapChain)
 	{
