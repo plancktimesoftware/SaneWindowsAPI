@@ -10,6 +10,12 @@
 
 #define IS_ZERO(num) CAT(IS_ZERO_INTERNAL_, num)
 
+/**
+ * Expands to the number of items in the input tuple.
+ * Supports tuples with 1-16 values.
+ */
+#define NUM(tuple) INTERNAL_NUM tuple
+
 #define APPEND_IF_NOT_ZERO(str, index) \
 	IF(IS_ZERO(index), str, str##index)
 
@@ -17,6 +23,9 @@
 
 #define ITERATE_MACRO_FOR_TUPLE(Macro, tuple, tupleSize, _1, _2, _3, _4) \
 	CAT(INTERNAL_ITERATE_TUPLE_, tupleSize)(Macro, tuple, _1, _2, _3, _4)
+
+#define REVERSE_ITERATE_MACRO_FOR_TUPLE(Macro, tuple, tupleSize, _1, _2, _3, _4) \
+	CAT(INTERNAL_REVERSE_ITERATE_TUPLE_, tupleSize)(Macro, tuple, _1, _2, _3, _4)
 
 #define DECLARE_VARIABLE(index, type, name, defValue, _unused) \
 	APPEND_IF_NOT_ZERO(type, index) name##V##index = defValue;

@@ -9,81 +9,32 @@ namespace SWApi
 {
 namespace D2D1
 {
-    auto Factory::Create(
+	auto Factory::Create(
 		D2D1_FACTORY_TYPE factoryType,
 		const std::optional<D2D1_FACTORY_OPTIONS>& factoryOptions)
 		-> WinResult<Factory>
-    {
-		DECLARE_VERSIONED_POINTER_VARIABLES(D2D1FACTORY_VERSIONS, NUM_D2D1FACTORY_VERSIONS, ID2D1Factory, factory, nullptr);
+	{
+		DECLARE_VERSIONED_POINTER_VARIABLES(D2D1FACTORY_VERSIONS, NUM(D2D1FACTORY_VERSIONS), ID2D1Factory, factory, nullptr);
 
 		const D2D1_FACTORY_OPTIONS* pFactoryOptions = factoryOptions ? &(factoryOptions.value()) : nullptr;
 
 		HRESULT hres = S_OK;
 		Factory factory;
 
-		hres = D2D1CreateFactory(
-			factoryType, __uuidof(ID2D1Factory7), pFactoryOptions, reinterpret_cast<void**>(&factoryV7));
-		if (hres == S_OK && factoryV7)
-		{
-			factory.SetNative(factoryV7);
-			return factory;
+#define CREATE_FACTORY(index, _unused1, _unused2, _unused3, _unused4) \
+		hres = D2D1CreateFactory( \
+			factoryType, __uuidof(APPEND_IF_NOT_ZERO(ID2D1Factory,index)), \
+			pFactoryOptions, reinterpret_cast<void**>(&factoryV##index)); \
+		if (hres == S_OK && factoryV##index) \
+		{ \
+			factory.SetNative(factoryV##index); \
+			return factory; \
 		}
 
-		hres = D2D1CreateFactory(
-			factoryType, __uuidof(ID2D1Factory6), pFactoryOptions, reinterpret_cast<void**>(&factoryV6));
-		if (hres == S_OK && factoryV6)
-		{
-			factory.SetNative(factoryV6);
-			return factory;
-		}
+#define CREATE_VERSIONED_FACTORIES(versions, numVersions) \
+		REVERSE_ITERATE_MACRO_FOR_TUPLE(CREATE_FACTORY, versions, numVersions, , , , )
 
-		hres = D2D1CreateFactory(
-			factoryType, __uuidof(ID2D1Factory5), pFactoryOptions, reinterpret_cast<void**>(&factoryV5));
-		if (hres == S_OK && factoryV5)
-		{
-			factory.SetNative(factoryV5);
-			return factory;
-		}
-
-		hres = D2D1CreateFactory(
-			factoryType, __uuidof(ID2D1Factory4), pFactoryOptions, reinterpret_cast<void**>(&factoryV4));
-		if (hres == S_OK && factoryV4)
-		{
-			factory.SetNative(factoryV4);
-			return factory;
-		}
-
-		hres = D2D1CreateFactory(
-			factoryType, __uuidof(ID2D1Factory3), pFactoryOptions, reinterpret_cast<void**>(&factoryV3));
-		if (hres == S_OK && factoryV3)
-		{
-			factory.SetNative(factoryV3);
-			return factory;
-		}
-
-		hres = D2D1CreateFactory(
-			factoryType, __uuidof(ID2D1Factory2), pFactoryOptions, reinterpret_cast<void**>(&factoryV2));
-		if (hres == S_OK && factoryV2)
-		{
-			factory.SetNative(factoryV2);
-			return factory;
-		}
-
-		hres = D2D1CreateFactory(
-			factoryType, __uuidof(ID2D1Factory1), pFactoryOptions, reinterpret_cast<void**>(&factoryV1));
-		if (hres == S_OK && factoryV1)
-		{
-			factory.SetNative(factoryV1);
-			return factory;
-		}
-
-		hres = D2D1CreateFactory(
-			factoryType, __uuidof(ID2D1Factory), pFactoryOptions, reinterpret_cast<void**>(&factoryV0));
-		if (hres == S_OK && factoryV0)
-		{
-			factory.SetNative(factoryV0);
-			return factory;
-		}
+		CREATE_VERSIONED_FACTORIES(D2D1FACTORY_VERSIONS, NUM(D2D1FACTORY_VERSIONS))
 		
 		return Err(hres);
 	}
@@ -171,7 +122,7 @@ namespace D2D1
 		}
 
 		return Err(hres);
-    }
+	}
 
 	auto Factory::CreatePathGeometry() -> WinResult<PathGeometry>
 	{
@@ -209,20 +160,20 @@ namespace D2D1
 
 	Factory::Factory(const Factory& other)
 		: Unknown(other)
-		INITIALIZE_VERSIONED_VARIABLES(D2D1FACTORY_VERSIONS, NUM_D2D1FACTORY_VERSIONS, mFactory, other.mFactory)
+		INITIALIZE_VERSIONED_VARIABLES(D2D1FACTORY_VERSIONS, NUM(D2D1FACTORY_VERSIONS), mFactory, other.mFactory)
 	{
-		ADDREF_TO_VERSIONED_VARIABLES(D2D1FACTORY_VERSIONS, NUM_D2D1FACTORY_VERSIONS, mFactory);
+		ADDREF_TO_VERSIONED_VARIABLES(D2D1FACTORY_VERSIONS, NUM(D2D1FACTORY_VERSIONS), mFactory);
 	}
 	Factory::Factory(Factory&& other) noexcept(true)
 		: Unknown(std::forward<Unknown>(other))
-		INITIALIZE_VERSIONED_VARIABLES(D2D1FACTORY_VERSIONS, NUM_D2D1FACTORY_VERSIONS, mFactory, other.mFactory)
+		INITIALIZE_VERSIONED_VARIABLES(D2D1FACTORY_VERSIONS, NUM(D2D1FACTORY_VERSIONS), mFactory, other.mFactory)
 	{
-		ASSIGN_TO_VERSIONED_VARIABLES(D2D1FACTORY_VERSIONS, NUM_D2D1FACTORY_VERSIONS, other.mFactory, nullptr)
+		ASSIGN_TO_VERSIONED_VARIABLES(D2D1FACTORY_VERSIONS, NUM(D2D1FACTORY_VERSIONS), other.mFactory, nullptr)
 	}
 
 	Factory::~Factory()
 	{
-		RELEASE_VERSIONED_VARIABLES(D2D1FACTORY_VERSIONS, NUM_D2D1FACTORY_VERSIONS, mFactory)
+		RELEASE_VERSIONED_VARIABLES(D2D1FACTORY_VERSIONS, NUM(D2D1FACTORY_VERSIONS), mFactory)
 	}
 }
 }

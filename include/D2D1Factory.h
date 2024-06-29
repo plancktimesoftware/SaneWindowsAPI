@@ -19,7 +19,6 @@ namespace D2D1
 	class PathGeometry;
 
 #define D2D1FACTORY_VERSIONS (0, 1, 2, 3, 4, 5, 6, 7)
-#define NUM_D2D1FACTORY_VERSIONS 8
 
 	class Factory : public Unknown
 	{
@@ -44,7 +43,7 @@ namespace D2D1
 		void SetNative(D2D1FactoryT* factoryPtr);
 
 	private:
-		DECLARE_VERSIONED_POINTER_VARIABLES(D2D1FACTORY_VERSIONS, NUM_D2D1FACTORY_VERSIONS, ID2D1Factory, mFactory, nullptr)
+		DECLARE_VERSIONED_POINTER_VARIABLES(D2D1FACTORY_VERSIONS, NUM(D2D1FACTORY_VERSIONS), ID2D1Factory, mFactory, nullptr)
 	};
 
 	template<typename D2D1FactoryT>
@@ -57,9 +56,9 @@ namespace D2D1
 		if (hres != S_OK) return;
 		Unknown::SetNative(unknownPtr);
 
-		RELEASE_VERSIONED_VARIABLES(D2D1FACTORY_VERSIONS, NUM_D2D1FACTORY_VERSIONS, mFactory)
+		RELEASE_VERSIONED_VARIABLES(D2D1FACTORY_VERSIONS, NUM(D2D1FACTORY_VERSIONS), mFactory)
 
-		QUERY_INTERFACE_VERSIONED_VARIABLES(D2D1FACTORY_VERSIONS, NUM_D2D1FACTORY_VERSIONS, mFactory, factoryPtr, /*no return*/);
+		QUERY_INTERFACE_VERSIONED_VARIABLES(D2D1FACTORY_VERSIONS, NUM(D2D1FACTORY_VERSIONS), mFactory, factoryPtr, /*no return*/);
 
 		factoryPtr->Release();
 	}
