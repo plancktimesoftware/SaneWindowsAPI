@@ -18,7 +18,17 @@ namespace D2D1
 	class Device;
 	class PathGeometry;
 
+#if NTDDI_VERSION >= 0x0A000004//NTDDI_WIN10_RS3
 #define D2D1FACTORY_VERSIONS (0, 1, 2, 3, 4, 5, 6, 7)
+#elif NTDDI_VERSION >= 0x0A000003//NTDDI_WIN10_RS2
+#define D2D1FACTORY_VERSIONS (0, 1, 2, 3, 4, 5, 6)
+#elif NTDDI_VERSION >= 0x0A000002//NTDDI_WIN10_RS1
+#define D2D1FACTORY_VERSIONS (0, 1, 2, 3, 4, 5)
+#elif NTDDI_VERSION >= 0x0A000001//NTDDI_WIN10_TH2
+#define D2D1FACTORY_VERSIONS (0, 1, 2, 3, 4)
+#else
+#define D2D1FACTORY_VERSIONS (0, 1, 2, 3)
+#endif
 
 	class Factory : public Unknown
 	{

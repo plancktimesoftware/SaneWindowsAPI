@@ -23,8 +23,45 @@
 #define IS_ZERO_INTERNAL_15 0
 #define IS_ZERO_INTERNAL_16 0
 
+#define INCREMENT_0 1
+#define INCREMENT_1 2
+#define INCREMENT_2 3
+#define INCREMENT_3 4
+#define INCREMENT_4 5
+#define INCREMENT_5 6
+#define INCREMENT_6 7
+#define INCREMENT_7 8
+#define INCREMENT_8 9
+#define INCREMENT_9 10
+#define INCREMENT_10 11
+#define INCREMENT_11 12
+#define INCREMENT_12 13
+#define INCREMENT_13 14
+#define INCREMENT_14 15
+#define INCREMENT_15 16
+
+#define DECREMENT_1 0
+#define DECREMENT_2 1
+#define DECREMENT_3 2
+#define DECREMENT_4 3
+#define DECREMENT_5 4
+#define DECREMENT_6 5
+#define DECREMENT_7 6
+#define DECREMENT_8 7
+#define DECREMENT_9 8
+#define DECREMENT_10 9
+#define DECREMENT_11 10
+#define DECREMENT_12 11
+#define DECREMENT_13 12
+#define DECREMENT_14 13
+#define DECREMENT_15 14
+#define DECREMENT_16 15
+
 #define INTERNAL_TUPLE_FIRST(first, ...) first
 #define INTERNAL_TUPLE_REMOVE_FIRST(first, ...) __VA_ARGS__
+
+#define INTERNAL_ITERATE_TUPLE_1(Macro, tuple, _1, _2, _3, _4) \
+	CALL_MACRO(Macro, INTERNAL_TUPLE_FIRST tuple, _1, _2, _3, _4) \
 
 #define INTERNAL_ITERATE_TUPLE_2(Macro, tuple, _1, _2, _3, _4) \
 	CALL_MACRO(Macro, INTERNAL_TUPLE_FIRST tuple, _1, _2, _3, _4) \
@@ -88,6 +125,9 @@
 
 #define INTERNAL_NTH_ARG(_1, _2, _3, _4, _5, _6, _7, _8, _9, _10, _11, _12, _13, _14, _15, _16, N, ...) N
 #define INTERNAL_NUM(...) INTERNAL_CAT(INTERNAL_NTH_ARG(__VA_ARGS__, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1),)
+
+#define INTERNAL_REVERSE_ITERATE_TUPLE_1(Macro, tuple, _1, _2, _3, _4) \
+	CALL_MACRO(Macro, INTERNAL_TUPLE_REMOVE_FIRST tuple, _1, _2, _3, _4)
 
 #define INTERNAL_REVERSE_ITERATE_TUPLE_2(Macro, tuple, _1, _2, _3, _4) \
 	CALL_MACRO(Macro, INTERNAL_TUPLE_REMOVE_FIRST tuple, _1, _2, _3, _4) \

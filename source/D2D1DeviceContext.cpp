@@ -173,6 +173,9 @@ namespace D2D1
 
 	WinResult<SvgDocument> DeviceContext::CreateSvgDocument(std::optional<Stream> xmlStream, D2D1_SIZE_F size)
 	{
+#if NTDDI_VERSION < 0x0A000003//NTDDI_WIN10_RS2
+		return Err(E_NOINTERFACE);
+#else
 		if (mDeviceContextV5 == nullptr) return Err(E_POINTER);
 
 		IStream* streamPtr = xmlStream ? xmlStream->GetNative() : nullptr;
@@ -187,16 +190,21 @@ namespace D2D1
 		SvgDocument svgDocument;
 		svgDocument.SetNative(d2d1SvgDocumentPtr);
 		return svgDocument;
+#endif
 	}
 
 	void DeviceContext::DrawSvgDocument(const SvgDocument& svgDocument)
 	{
+#if NTDDI_VERSION < 0x0A000003//NTDDI_WIN10_RS2
+		return;
+#else
 		if (mDeviceContextV5 == nullptr) return;
 
 		ID2D1SvgDocument* d2d1SvgDocumentPtr = svgDocument.GetNative();
 		if (d2d1SvgDocumentPtr == nullptr) return;
 
 		mDeviceContextV5->DrawSvgDocument(d2d1SvgDocumentPtr);
+#endif
 	}
 
 	::D2D1::Matrix3x2F DeviceContext::GetTransform()
@@ -213,21 +221,21 @@ namespace D2D1
 
 	DeviceContext::DeviceContext(const DeviceContext& other)
 		: RenderTarget(other)
-		INITIALIZE_VERSIONED_VARIABLES(D2D1DEVICECONTEXT_VERSIONS, NUM_D2D1DEVICECONTEXT_VERSIONS, mDeviceContext, other.mDeviceContext)
+		INITIALIZE_VERSIONED_VARIABLES(D2D1DEVICECONTEXT_VERSIONS, NUM(D2D1DEVICECONTEXT_VERSIONS), mDeviceContext, other.mDeviceContext)
 	{
-		ADDREF_TO_VERSIONED_VARIABLES(D2D1DEVICECONTEXT_VERSIONS, NUM_D2D1DEVICECONTEXT_VERSIONS, mDeviceContext)
+		ADDREF_TO_VERSIONED_VARIABLES(D2D1DEVICECONTEXT_VERSIONS, NUM(D2D1DEVICECONTEXT_VERSIONS), mDeviceContext)
 	}
 
 	DeviceContext::DeviceContext(DeviceContext&& other) noexcept(true)
 		: RenderTarget(std::forward<RenderTarget>(other))
-		INITIALIZE_VERSIONED_VARIABLES(D2D1DEVICECONTEXT_VERSIONS, NUM_D2D1DEVICECONTEXT_VERSIONS, mDeviceContext, other.mDeviceContext)
+		INITIALIZE_VERSIONED_VARIABLES(D2D1DEVICECONTEXT_VERSIONS, NUM(D2D1DEVICECONTEXT_VERSIONS), mDeviceContext, other.mDeviceContext)
 	{
-		ASSIGN_TO_VERSIONED_VARIABLES(D2D1DEVICECONTEXT_VERSIONS, NUM_D2D1DEVICECONTEXT_VERSIONS, other.mDeviceContext, nullptr)
+		ASSIGN_TO_VERSIONED_VARIABLES(D2D1DEVICECONTEXT_VERSIONS, NUM(D2D1DEVICECONTEXT_VERSIONS), other.mDeviceContext, nullptr)
 	}
 
 	DeviceContext::~DeviceContext()
 	{
-		RELEASE_VERSIONED_VARIABLES(D2D1DEVICECONTEXT_VERSIONS, NUM_D2D1DEVICECONTEXT_VERSIONS, mDeviceContext)
+		RELEASE_VERSIONED_VARIABLES(D2D1DEVICECONTEXT_VERSIONS, NUM(D2D1DEVICECONTEXT_VERSIONS), mDeviceContext)
 	}
 
 }

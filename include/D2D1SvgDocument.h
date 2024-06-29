@@ -16,10 +16,14 @@ namespace D2D1
 
 		~SvgDocument();
 
+#if NTDDI_VERSION >= 0x0A000003//NTDDI_WIN10_RS2
 		auto GetNative() const -> ID2D1SvgDocument* { return mID2D1SvgDocument; }
 		void SetNative(ID2D1SvgDocument* d2d1SvgDocumentPtr);
 	private:
 		ID2D1SvgDocument* mID2D1SvgDocument = nullptr;
+#endif
 	};
 }
 }
+
+

@@ -16,6 +16,18 @@
  */
 #define NUM(tuple) INTERNAL_NUM tuple
 
+/**
+ * Increments the specified integer.
+ * Supports range [0,15].
+ */
+#define INCREMENT(i) CAT(INCREMENT_,i)
+
+/**
+ * Decrements the specified integer.
+ * Supports range [1-16].
+ */
+#define DECREMENT(i) CAT(DECREMENT_,i)
+
 #define APPEND_IF_NOT_ZERO(str, index) \
 	IF(IS_ZERO(index), str, str##index)
 

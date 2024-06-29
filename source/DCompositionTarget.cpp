@@ -7,6 +7,8 @@ namespace DComposition
 {
 	auto Target::SetRoot(const Visual& rootVisual) -> WinResult<void>
 	{
+#if NTDDI_VERSION >= 0x06020000//NTDDI_WIN8
+
 		if (mIDCompositionTarget == nullptr) return Err(E_POINTER);
 
 		auto dCompVisualV0 = rootVisual.GetNative<IDCompositionVisual>();
@@ -14,7 +16,13 @@ namespace DComposition
 
 		auto hres = mIDCompositionTarget->SetRoot(dCompVisualV0);
 		return (hres == S_OK) ? WinResult<void>() : Err(hres);
+
+#else //NTDDI_VERSION >= 0x06020000//NTDDI_WIN8
+		return Err(E_NOINTERFACE);
+#endif //NTDDI_VERSION >= 0x06020000//NTDDI_WIN8
 	}
+
+#if NTDDI_VERSION >= 0x06020000//NTDDI_WIN8
 
 	Target::Target(const Target& other)
 		: Unknown(other)
@@ -50,5 +58,20 @@ namespace DComposition
 			unknownPtr = nullptr;
 		Unknown::SetNative(unknownPtr);
 	}
+
+#else //NTDDI_VERSION >= 0x06020000//NTDDI_WIN8
+
+	Target::Target(const Target& other)
+		: Unknown(other)
+	{}
+
+	Target::Target(Target&& other) noexcept(true)
+		: Unknown(std::forward<Unknown>(other))
+	{}
+
+	Target::~Target()
+	{}
+
+#endif //NTDDI_VERSION >= 0x06020000//NTDDI_WIN8
 }
 }

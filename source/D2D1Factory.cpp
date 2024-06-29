@@ -21,7 +21,7 @@ namespace D2D1
 		HRESULT hres = S_OK;
 		Factory factory;
 
-#define CREATE_FACTORY(index, _unused1, _unused2, _unused3, _unused4) \
+#define CREATE_FACTORY(index, ...) \
 		hres = D2D1CreateFactory( \
 			factoryType, __uuidof(APPEND_IF_NOT_ZERO(ID2D1Factory,index)), \
 			pFactoryOptions, reinterpret_cast<void**>(&factoryV##index)); \
@@ -49,77 +49,23 @@ namespace D2D1
 
 		Device device;
 		HRESULT hres = S_OK;
-		DECLARE_VERSIONED_POINTER_VARIABLES(D2D1DEVICE_VERSIONS, NUM_D2D1DEVICE_VERSIONS, ID2D1Device, device, nullptr)
+		DECLARE_VERSIONED_POINTER_VARIABLES(D2D1DEVICE_VERSIONS, NUM(D2D1DEVICE_VERSIONS), ID2D1Device, device, nullptr)
 
-		if (mFactoryV7)
-		{
-			hres = mFactoryV7->CreateDevice(dxgiDevicePtr, &deviceV6);
-			if (hres == S_OK && deviceV6)
-			{
-				device.SetNative(deviceV6);
-				return device;
-			}
+#define CREATE_DEVICE_FROM_FACTORY(index, ...) \
+		if (CAT(mFactoryV, INCREMENT(index))) \
+		{ \
+			hres = CAT(mFactoryV, INCREMENT(index))->CreateDevice(dxgiDevicePtr, &deviceV##index); \
+			if (hres == S_OK && deviceV##index) \
+			{ \
+				device.SetNative(deviceV##index); \
+				return device; \
+			} \
 		}
 
-		if (mFactoryV6)
-		{
-			hres = mFactoryV6->CreateDevice(dxgiDevicePtr, &deviceV5);
-			if (hres == S_OK && deviceV5)
-			{
-				device.SetNative(deviceV5);
-				return device;
-			}
-		}
+#define CREATE_VERSIONED_DEVICES(versions, numVersions) \
+		REVERSE_ITERATE_MACRO_FOR_TUPLE(CREATE_DEVICE_FROM_FACTORY, versions, numVersions, , , , )
 
-		if (mFactoryV5)
-		{
-			hres = mFactoryV5->CreateDevice(dxgiDevicePtr, &deviceV4);
-			if (hres == S_OK && deviceV4)
-			{
-				device.SetNative(deviceV4);
-				return device;
-			}
-		}
-
-		if (mFactoryV4)
-		{
-			hres = mFactoryV4->CreateDevice(dxgiDevicePtr, &deviceV3);
-			if (hres == S_OK && deviceV3)
-			{
-				device.SetNative(deviceV3);
-				return device;
-			}
-		}
-
-		if (mFactoryV3)
-		{
-			hres = mFactoryV3->CreateDevice(dxgiDevicePtr, &deviceV2);
-			if (hres == S_OK && deviceV2)
-			{
-				device.SetNative(deviceV2);
-				return device;
-			}
-		}
-
-		if (mFactoryV2)
-		{
-			hres = mFactoryV2->CreateDevice(dxgiDevicePtr, &deviceV1);
-			if (hres == S_OK && deviceV1)
-			{
-				device.SetNative(deviceV1);
-				return device;
-			}
-		}
-
-		if (mFactoryV1)
-		{
-			hres = mFactoryV1->CreateDevice(dxgiDevicePtr, &deviceV0);
-			if (hres == S_OK && deviceV0)
-			{
-				device.SetNative(deviceV0);
-				return device;
-			}
-		}
+		CREATE_VERSIONED_DEVICES(D2D1DEVICE_VERSIONS, NUM(D2D1DEVICE_VERSIONS))
 
 		return Err(hres);
 	}

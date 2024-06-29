@@ -19,8 +19,13 @@ namespace DComposition
 	class Target;
 	class Visual;
 
+#if _WIN32_WINNT >= 0x0A00//_WIN32_WINNT_WINTHRESHOLD
 #define DCOMPDEVICE_VERSIONS (0, 2, 3)
-#define NUM_DCOMPDEVICE_VERSIONS 3
+#elif _WIN32_WINNT >= 0x0603//_WIN32_WINNT_WINBLUE
+#define DCOMPDEVICE_VERSIONS (0, 2)
+#elif NTDDI_VERSION >= 0x06020000//NTDDI_WIN8
+#define DCOMPDEVICE_VERSIONS (0)
+#endif
 
 	class Device : public Unknown
 	{
@@ -39,14 +44,17 @@ namespace DComposition
 
 		~Device();
 
-		GETNATIVE_VERSIONED_VARIABLES(DCOMPDEVICE_VERSIONS, NUM_DCOMPDEVICE_VERSIONS, IDCompositionDevice, mDevice)
+#if NTDDI_VERSION >= 0x06020000//NTDDI_WIN8
+		GETNATIVE_VERSIONED_VARIABLES(DCOMPDEVICE_VERSIONS, NUM(DCOMPDEVICE_VERSIONS), IDCompositionDevice, mDevice)
 
 		template<typename DCompDeviceT>
 		void SetNative(DCompDeviceT* dCompDevicePtr);
 	private:
-		DECLARE_VERSIONED_POINTER_VARIABLES(DCOMPDEVICE_VERSIONS, NUM_DCOMPDEVICE_VERSIONS, IDCompositionDevice, mDevice, nullptr)
+		DECLARE_VERSIONED_POINTER_VARIABLES(DCOMPDEVICE_VERSIONS, NUM(DCOMPDEVICE_VERSIONS), IDCompositionDevice, mDevice, nullptr)
+#endif //NTDDI_VERSION >= 0x06020000//NTDDI_WIN8
 	};
 
+#if NTDDI_VERSION >= 0x06020000//NTDDI_WIN8
 	template<typename DCompDeviceT>
 	inline void Device::SetNative(DCompDeviceT* dCompDevicePtr)
 	{
@@ -57,11 +65,12 @@ namespace DComposition
 		if (hres != S_OK) return;
 		Unknown::SetNative(unknownPtr);
 
-		RELEASE_VERSIONED_VARIABLES(DCOMPDEVICE_VERSIONS, NUM_DCOMPDEVICE_VERSIONS, mDevice)
+		RELEASE_VERSIONED_VARIABLES(DCOMPDEVICE_VERSIONS, NUM(DCOMPDEVICE_VERSIONS), mDevice)
 
-		QUERY_INTERFACE_VERSIONED_VARIABLES(DCOMPDEVICE_VERSIONS, NUM_DCOMPDEVICE_VERSIONS, mDevice, dCompDevicePtr, /*no return*/)
+		QUERY_INTERFACE_VERSIONED_VARIABLES(DCOMPDEVICE_VERSIONS, NUM(DCOMPDEVICE_VERSIONS), mDevice, dCompDevicePtr, /*no return*/)
 
 		dCompDevicePtr->Release();
 	}
+#endif //NTDDI_VERSION >= 0x06020000//NTDDI_WIN8
 }
 }

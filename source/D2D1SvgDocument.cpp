@@ -5,6 +5,7 @@ namespace SWApi
 {
 namespace D2D1
 {
+#if NTDDI_VERSION >= 0x0A000003//NTDDI_WIN10_RS2
 	SvgDocument::SvgDocument(const SvgDocument& other)
 		: Resource(other)
 		, mID2D1SvgDocument(other.mID2D1SvgDocument)
@@ -41,5 +42,17 @@ namespace D2D1
 			d2d1ResourcePtr = nullptr;
 		Resource::SetNative(d2d1ResourcePtr);
 	}
+#else
+	SvgDocument::SvgDocument(const SvgDocument& other)
+		: Resource(other)
+	{ }
+
+	SvgDocument::SvgDocument(SvgDocument&& other) noexcept(true)
+		: Resource(std::forward<Resource>(other))
+	{ }
+
+	SvgDocument::~SvgDocument()
+	{ }
+#endif
 }
 }
