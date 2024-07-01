@@ -167,6 +167,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="..\api\swapi_common.h" />
+    <ClInclude Include="..\api\swapi_d2d1.h" />
+    <ClInclude Include="..\api\swapi_d3d11.h" />
+    <ClInclude Include="..\api\swapi_dcomp.h" />
+    <ClInclude Include="..\api\swapi_dxgi.h" />
+    <ClInclude Include="..\api\swapi_libloaderapi.h" />
+    <ClInclude Include="..\api\swapi_objidl.h" />
+    <ClInclude Include="..\api\swapi_winuser.h" />
     <ClInclude Include="..\include\CommonMacros.h" />
     <ClInclude Include="..\include\D2D1Bitmap.h" />
     <ClInclude Include="..\include\D2D1Brush.h" />

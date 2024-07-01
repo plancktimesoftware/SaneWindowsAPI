@@ -28,6 +28,9 @@
     <Filter Include="WindowsAndMessages">
       <UniqueIdentifier>{b27ab897-aba2-454c-b33a-0c70b1756ae7}</UniqueIdentifier>
     </Filter>
+    <Filter Include="API">
+      <UniqueIdentifier>{49819dfa-c9e7-49a0-8e30-999a97c38a50}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\pch\pch.h">
@@ -135,11 +138,35 @@
     <ClInclude Include="..\include\Window.h">
       <Filter>WindowsAndMessages</Filter>
     </ClInclude>
-    <ClInclude Include="..\include\Geometry.h">
-      <Filter>WindowsAndMessages</Filter>
-    </ClInclude>
     <ClInclude Include="..\include\DXGIOutput.h">
       <Filter>DXGI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\api\swapi_d2d1.h">
+      <Filter>API</Filter>
+    </ClInclude>
+    <ClInclude Include="..\api\swapi_d3d11.h">
+      <Filter>API</Filter>
+    </ClInclude>
+    <ClInclude Include="..\api\swapi_dcomp.h">
+      <Filter>API</Filter>
+    </ClInclude>
+    <ClInclude Include="..\api\swapi_dxgi.h">
+      <Filter>API</Filter>
+    </ClInclude>
+    <ClInclude Include="..\api\swapi_objidl.h">
+      <Filter>API</Filter>
+    </ClInclude>
+    <ClInclude Include="..\api\swapi_libloaderapi.h">
+      <Filter>API</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\Geometry.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\api\swapi_winuser.h">
+      <Filter>API</Filter>
+    </ClInclude>
+    <ClInclude Include="..\api\swapi_common.h">
+      <Filter>API</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -236,11 +263,11 @@
     <ClCompile Include="..\source\Window.cpp">
       <Filter>WindowsAndMessages</Filter>
     </ClCompile>
-    <ClCompile Include="..\source\Geometry.cpp">
-      <Filter>WindowsAndMessages</Filter>
-    </ClCompile>
     <ClCompile Include="..\source\DXGIOutput.cpp">
       <Filter>DXGI</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\Geometry.cpp">
+      <Filter>Common</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
